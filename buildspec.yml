@@ -1,0 +1,18 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - printenv
+      - npm install
+  build:
+    commands:
+      - npm run deploy:$STAGE
+  post_build:
+    commands:
+      - aws s3 sync ./build/ s3://your-bucket-name-$STAGE --delete --exclude '*' --include "*.zip"
+      - aws lambda update-function-code --function-name your-function-name-$STAGE --s3-bucket your-bucket-name-$STAGE --s3-key bundle.zip
+artifacts:
+  files:
+    - build/**
+  discard-paths: yes

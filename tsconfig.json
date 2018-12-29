@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/",
+        "noImplicitAny": true,
+        "allowJs": false,
+        "target": "es5",
+        "lib": ["es7"]
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "__tests__",
+        "**/*.spec.ts"
+    ]
+}
